@@ -1,6 +1,6 @@
 package code;
 
-import code.model.User; // Asumsi kelas User ada dan terstruktur dengan benar
+import code.model.User;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,114 +11,107 @@ public class DashboardFrame extends JFrame {
     private JTextArea userScoresArea;
     private JTextArea leaderboardArea;
 
+    // Konstruktor menerima objek User, bisa Admin atau User biasa
     public DashboardFrame(User user) {
         this.user = user;
-        setTitle("Game Center - Welcome " + user.getNickname()); // Mengubah judul
+        setTitle("Game Center - Welcome " + user.getNickname());
         setSize(900, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Mengatur latar belakang utama frame
-        getContentPane().setBackground(new Color(30, 30, 30)); // Latar belakang gelap
+        getContentPane().setBackground(new Color(30, 30, 30));
 
-        JPanel mainPanel = new JPanel(new BorderLayout(15, 15)); // Menambah jarak antar panel
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Padding lebih besar
-        mainPanel.setBackground(new Color(30, 30, 30)); // Latar belakang gelap
+        JPanel mainPanel = new JPanel(new BorderLayout(15, 15));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        mainPanel.setBackground(new Color(30, 30, 30));
 
-        // --- Top Panel for Welcome Label and Logout Button ---
         JPanel topPanel = new JPanel(new BorderLayout());
-        topPanel.setBackground(new Color(30, 30, 30)); // Latar belakang gelap
+        topPanel.setBackground(new Color(30, 30, 30));
 
         JLabel welcomeLabel = new JLabel("Welcome, " + user.getNickname() + "!", JLabel.CENTER);
-        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Font lebih besar
-        welcomeLabel.setForeground(Color.WHITE); // Warna teks putih
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        welcomeLabel.setForeground(Color.WHITE);
         topPanel.add(welcomeLabel, BorderLayout.CENTER);
 
         JButton logoutButton = new JButton("Logout");
         logoutButton.setFont(new Font("Arial", Font.BOLD, 14));
-        logoutButton.setBackground(new Color(220, 53, 69)); // Warna merah untuk logout
+        logoutButton.setBackground(new Color(220, 53, 69));
         logoutButton.setForeground(Color.WHITE);
         logoutButton.setFocusPainted(false);
         logoutButton.setBorderPainted(false);
-        logoutButton.setPreferredSize(new Dimension(100, 35)); // Ukuran tombol konsisten
+        logoutButton.setPreferredSize(new Dimension(100, 35));
         logoutButton.addActionListener(e -> {
-            new LoginFrame().setVisible(true); // Kembali ke LoginFrame
-            dispose(); // Tutup DashboardFrame saat logout
+            new LoginFrame().setVisible(true);
+            dispose();
         });
-        JPanel logoutButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0)); // Untuk menempatkan tombol di kanan tanpa padding ekstra
-        logoutButtonPanel.setBackground(new Color(30, 30, 30)); // Latar belakang gelap
+        JPanel logoutButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
+        logoutButtonPanel.setBackground(new Color(30, 30, 30));
         logoutButtonPanel.add(logoutButton);
         topPanel.add(logoutButtonPanel, BorderLayout.EAST);
 
         mainPanel.add(topPanel, BorderLayout.NORTH);
 
-        // --- Center panel for scores and leaderboard ---
-        JPanel centerPanel = new JPanel(new GridLayout(1, 2, 20, 10)); // Menambah jarak antar panel
-        centerPanel.setBackground(new Color(30, 30, 30)); // Latar belakang gelap
+        JPanel centerPanel = new JPanel(new GridLayout(1, 2, 20, 10));
+        centerPanel.setBackground(new Color(30, 30, 30));
 
-        // User scores panel
         JPanel userScoresPanel = new JPanel(new BorderLayout());
-        userScoresPanel.setBackground(new Color(45, 45, 45)); // Warna gelap sedikit lebih terang
+        userScoresPanel.setBackground(new Color(45, 45, 45));
         userScoresPanel.setBorder(BorderFactory.createTitledBorder(
-            BorderFactory.createLineBorder(new Color(75, 75, 75)), // Border warna abu-abu
-            "Your Scores", // Judul
-            javax.swing.border.TitledBorder.LEFT, // Posisi judul
-            javax.swing.border.TitledBorder.TOP, // Posisi judul
-            new Font("Arial", Font.BOLD, 16), // Font judul
-            Color.WHITE // Warna judul
+            BorderFactory.createLineBorder(new Color(75, 75, 75)),
+            "Your Scores",
+            javax.swing.border.TitledBorder.LEFT,
+            javax.swing.border.TitledBorder.TOP,
+            new Font("Arial", Font.BOLD, 16),
+            Color.WHITE
         ));
         userScoresArea = new JTextArea();
         userScoresArea.setEditable(false);
-        userScoresArea.setFont(new Font("Monospaced", Font.PLAIN, 14)); // Font monospaced untuk tabel
-        userScoresArea.setBackground(new Color(60, 60, 60)); // Latar belakang area teks gelap
-        userScoresArea.setForeground(Color.WHITE); // Warna teks putih
+        userScoresArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        userScoresArea.setBackground(new Color(60, 60, 60));
+        userScoresArea.setForeground(Color.WHITE);
         JScrollPane userScoresScrollPane = new JScrollPane(userScoresArea);
-        userScoresScrollPane.setBorder(BorderFactory.createEmptyBorder()); // Menghilangkan border scrollpane
-        userScoresScrollPane.getViewport().setBackground(new Color(60, 60, 60)); // Latar belakang viewport
+        userScoresScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        userScoresScrollPane.getViewport().setBackground(new Color(60, 60, 60));
         userScoresPanel.add(userScoresScrollPane, BorderLayout.CENTER);
         centerPanel.add(userScoresPanel);
 
-        // Leaderboard panel
         JPanel leaderboardPanel = new JPanel(new BorderLayout());
-        leaderboardPanel.setBackground(new Color(45, 45, 45)); // Warna gelap sedikit lebih terang
+        leaderboardPanel.setBackground(new Color(45, 45, 45));
         leaderboardPanel.setBorder(BorderFactory.createTitledBorder(
-            BorderFactory.createLineBorder(new Color(75, 75, 75)), // Border warna abu-abu
-            "Leaderboards", // Judul
-            javax.swing.border.TitledBorder.LEFT, // Posisi judul
-            javax.swing.border.TitledBorder.TOP, // Posisi judul
-            new Font("Arial", Font.BOLD, 16), // Font judul
-            Color.WHITE // Warna judul
+            BorderFactory.createLineBorder(new Color(75, 75, 75)),
+            "Leaderboards",
+            javax.swing.border.TitledBorder.LEFT,
+            javax.swing.border.TitledBorder.TOP,
+            new Font("Arial", Font.BOLD, 16),
+            Color.WHITE
         ));
         leaderboardArea = new JTextArea();
         leaderboardArea.setEditable(false);
-        leaderboardArea.setFont(new Font("Monospaced", Font.PLAIN, 14)); // Font monospaced untuk tabel
-        leaderboardArea.setBackground(new Color(60, 60, 60)); // Latar belakang area teks gelap
-        leaderboardArea.setForeground(Color.WHITE); // Warna teks putih
+        leaderboardArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        leaderboardArea.setBackground(new Color(60, 60, 60));
+        leaderboardArea.setForeground(Color.WHITE);
         JScrollPane leaderboardScrollPane = new JScrollPane(leaderboardArea);
-        leaderboardScrollPane.setBorder(BorderFactory.createEmptyBorder()); // Menghilangkan border scrollpane
-        leaderboardScrollPane.getViewport().setBackground(new Color(60, 60, 60)); // Latar belakang viewport
+        leaderboardScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        leaderboardScrollPane.getViewport().setBackground(new Color(60, 60, 60));
         leaderboardPanel.add(leaderboardScrollPane, BorderLayout.CENTER);
         centerPanel.add(leaderboardPanel);
 
         mainPanel.add(centerPanel, BorderLayout.CENTER);
 
-        // --- Game buttons panel ---
-        JPanel gamePanel = new JPanel(new GridLayout(1, 2, 20, 10)); // Menambah jarak antar tombol
-        gamePanel.setBackground(new Color(30, 30, 30)); // Latar belakang gelap
+        JPanel gamePanel = new JPanel(new GridLayout(1, 2, 20, 10));
+        gamePanel.setBackground(new Color(30, 30, 30));
 
-        // Tombol Tic Tac Toe dengan foto
         JButton ticTacToeButton = new JButton();
         ticTacToeButton.setFont(new Font("Arial", Font.BOLD, 16));
-        ticTacToeButton.setBackground(new Color(255, 152, 0)); // Oranye cerah
+        ticTacToeButton.setBackground(new Color(255, 152, 0));
         ticTacToeButton.setForeground(Color.WHITE);
         ticTacToeButton.setFocusPainted(false);
         ticTacToeButton.setBorderPainted(false);
-        ticTacToeButton.setPreferredSize(new Dimension(250, 200)); // Ukuran tombol konsisten
+        ticTacToeButton.setPreferredSize(new Dimension(250, 200));
         
         try {
             ImageIcon ticTacToeIcon = new ImageIcon(getClass().getResource("/assets/tictactoe.png"));
             if (ticTacToeIcon.getImageLoadStatus() == MediaTracker.COMPLETE) {
-                // Skala gambar agar pas di tombol
                 Image scaledTicTacToeImage = ticTacToeIcon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
                 ticTacToeButton.setIcon(new ImageIcon(scaledTicTacToeImage));
                 
@@ -136,19 +129,17 @@ public class DashboardFrame extends JFrame {
         ticTacToeButton.addActionListener(e -> playTicTacToe());
         gamePanel.add(ticTacToeButton);
 
-        // Tombol Snake Game dengan foto
         JButton snakeGameButton = new JButton();
         snakeGameButton.setFont(new Font("Arial", Font.BOLD, 16));
-        snakeGameButton.setBackground(new Color(76, 175, 80)); // Hijau cerah
+        snakeGameButton.setBackground(new Color(76, 175, 80));
         snakeGameButton.setForeground(Color.WHITE);
         snakeGameButton.setFocusPainted(false);
         snakeGameButton.setBorderPainted(false);
-        snakeGameButton.setPreferredSize(new Dimension(250, 200)); // Ukuran tombol konsisten
+        snakeGameButton.setPreferredSize(new Dimension(250, 200));
 
         try {
             ImageIcon snakeGameIcon = new ImageIcon(getClass().getResource("/assets/snakegame.jpg"));
             if (snakeGameIcon.getImageLoadStatus() == MediaTracker.COMPLETE) {
-                // Skala gambar agar pas di tombol
                 Image scaledSnakeGameImage = snakeGameIcon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
                 snakeGameButton.setIcon(new ImageIcon(scaledSnakeGameImage));
 
@@ -170,7 +161,6 @@ public class DashboardFrame extends JFrame {
 
         add(mainPanel);
 
-        // Load data when frame is shown
         loadUserScores();
         loadLeaderboards();
     }
@@ -179,7 +169,6 @@ public class DashboardFrame extends JFrame {
         try (Connection conn = DBConnection.getConnection()) {
             StringBuilder sb = new StringBuilder();
 
-            // Get Tic Tac Toe win count
             String ticTacToeSql = "SELECT COALESCE(SUM(score), 0) as win_count FROM game_scores " +
                                   "WHERE user_id = ? AND game_name = 'Tic Tac Toe'";
             PreparedStatement ticTacToeStmt = conn.prepareStatement(ticTacToeSql);
@@ -190,7 +179,6 @@ public class DashboardFrame extends JFrame {
                 sb.append("Tic Tac Toe Wins: ").append(ticTacToeRs.getInt("win_count")).append("\n\n");
             }
 
-            // Get Snake Game high score
             String snakeSql = "SELECT COALESCE(MAX(score), 0) as high_score FROM game_scores " +
                               "WHERE user_id = ? AND game_name = 'Snake Game'";
             PreparedStatement snakeStmt = conn.prepareStatement(snakeSql);
@@ -211,7 +199,6 @@ public class DashboardFrame extends JFrame {
         try (Connection conn = DBConnection.getConnection()) {
             StringBuilder sb = new StringBuilder();
 
-            // Tic Tac Toe Leaderboard (most wins)
             sb.append("=== Tic Tac Toe Top Players ===\n");
             sb.append(String.format("%-15s %-10s\n", "Player", "Wins"));
             
@@ -232,7 +219,6 @@ public class DashboardFrame extends JFrame {
             sb.append("\n=== Snake Game Top Players ===\n");
             sb.append(String.format("%-15s %-10s\n", "Player", "High Score"));
             
-            // Snake Game Leaderboard (highest scores)
             String snakeLeaderboardSql = "SELECT u.nickname, MAX(gs.score) as high_score " +
                                          "FROM game_scores gs JOIN users u ON gs.user_id = u.user_id " +
                                          "WHERE gs.game_name = 'Snake Game' " +
@@ -254,12 +240,12 @@ public class DashboardFrame extends JFrame {
     }
 
     private void playTicTacToe() {
-        new Player2LoginFrame(user).setVisible(true); // Asumsi Player2LoginFrame ada
+        new Player2LoginFrame(user).setVisible(true);
         dispose();
     }
 
     private void playSnakeGame() {
-        new GameUlar(user).setVisible(true); // Asumsi GameUlar ada
+        new GameUlar(user).setVisible(true);
         dispose();
     }
 }

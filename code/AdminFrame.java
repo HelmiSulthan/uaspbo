@@ -1,6 +1,7 @@
 package code;
 
-import code.model.User;
+import code.model.Admin; // Import kelas Admin
+import code.model.User; // Tetap import User karena User adalah superclass
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,17 +13,16 @@ public class AdminFrame extends JFrame {
     private JTable usersTable;
     private JTable scoresTable;
     
-    public AdminFrame(User adminUser) {
+    // Mengubah parameter konstruktor dari User menjadi Admin
+    public AdminFrame(Admin adminUser) {
         setTitle("Admin Dashboard - Log-in sebagai " + adminUser.getNickname());
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        // Panel utama dengan BorderLayout
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Panel untuk judul dan tombol logout di bagian atas
         JPanel topPanel = new JPanel(new BorderLayout());
         JLabel titleLabel = new JLabel("Admin Dashboard - Log-in sebagai " + adminUser.getNickname(), JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
@@ -30,10 +30,10 @@ public class AdminFrame extends JFrame {
 
         JButton logoutButton = new JButton("Logout");
         logoutButton.addActionListener(e -> {
-            new LoginFrame().setVisible(true); // Kembali ke LoginFrame
-            dispose(); // Tutup AdminFrame saat logout
+            new LoginFrame().setVisible(true);
+            dispose();
         });
-        JPanel logoutButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT)); // Untuk menempatkan tombol di kanan
+        JPanel logoutButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         logoutButtonPanel.add(logoutButton);
         topPanel.add(logoutButtonPanel, BorderLayout.EAST);
 
@@ -41,7 +41,6 @@ public class AdminFrame extends JFrame {
 
         JTabbedPane tabbedPane = new JTabbedPane();
         
-        // Tab 1: Manage Users
         JPanel usersPanel = new JPanel(new BorderLayout());
         usersPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
@@ -62,7 +61,6 @@ public class AdminFrame extends JFrame {
         
         tabbedPane.addTab("Users", usersPanel);
         
-        // Tab 2: Manage Scores
         JPanel scoresPanel = new JPanel(new BorderLayout());
         scoresPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
@@ -87,8 +85,8 @@ public class AdminFrame extends JFrame {
         
         tabbedPane.addTab("Scores", scoresPanel);
         
-        mainPanel.add(tabbedPane, BorderLayout.CENTER); // Tambahkan tabbedPane ke CENTER mainPanel
-        add(mainPanel); // Tambahkan mainPanel ke JFrame
+        mainPanel.add(tabbedPane, BorderLayout.CENTER);
+        add(mainPanel);
         
         loadUsersData();
         loadScoresData();
@@ -107,7 +105,6 @@ public class AdminFrame extends JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error loading users: " + e.getMessage());
             e.printStackTrace();
-            // Fallback - create empty table model
             usersTable.setModel(new DefaultTableModel());
         }
     }
@@ -126,7 +123,6 @@ public class AdminFrame extends JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error loading scores: " + e.getMessage());
             e.printStackTrace();
-            // Fallback - create empty table model
             scoresTable.setModel(new DefaultTableModel());
         }
     }

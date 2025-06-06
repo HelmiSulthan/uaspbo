@@ -1,6 +1,7 @@
 package code;
 
-import code.model.User; // Asumsi kelas User ada dan terstruktur dengan benar
+import code.model.Admin; // Import kelas Admin
+import code.model.User;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,82 +12,67 @@ public class LoginFrame extends JFrame {
     private JPasswordField passwordField;
 
     public LoginFrame() {
-        // Mengatur judul frame dan properti dasar
         setTitle("Game Center Login");
         setSize(900, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Menempatkan frame di tengah layar
+        setLocationRelativeTo(null);
 
-        // Mengatur warna latar belakang untuk seluruh frame agar sesuai dengan gambar pertama
-        // Gambar pertama memiliki latar belakang gelap, bukan terbagi dua panel
-        getContentPane().setBackground(new Color(30, 30, 30)); // Warna abu-abu sangat gelap
-
-        // Menggunakan BorderLayout untuk menempatkan panel utama di tengah
+        getContentPane().setBackground(new Color(30, 30, 30));
         setLayout(new BorderLayout());
 
-        // --- Panel Utama Konten (menggantikan mainPanel, leftPanel, rightPanel) ---
-        // Panel ini akan menampung judul dan form login, dipusatkan di frame
         JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new GridBagLayout()); // Menggunakan GridBagLayout untuk penempatan komponen yang presisi
-        contentPanel.setBackground(new Color(30, 30, 30)); // Latar belakang gelap yang sama
+        contentPanel.setLayout(new GridBagLayout());
+        contentPanel.setBackground(new Color(30, 30, 30));
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 0, 10, 0); // Padding antar komponen
-        gbc.fill = GridBagConstraints.HORIZONTAL; // Membuat komponen mengisi ruang secara horizontal
-        gbc.anchor = GridBagConstraints.CENTER; // Menempatkan komponen di tengah sel grid mereka
+        gbc.insets = new Insets(10, 0, 10, 0);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.CENTER;
 
-        // --- Judul "Game Center" ---
         JLabel titleLabel = new JLabel("Game Center");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 36)); // Font lebih besar dan tebal
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 36));
         titleLabel.setForeground(Color.WHITE);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = 2; // Mengambil 2 kolom untuk judul
-        gbc.insets = new Insets(0, 0, 40, 0); // Jarak lebih besar di bawah judul
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 0, 40, 0);
         contentPanel.add(titleLabel, gbc);
 
-        // --- Form Login ---
-        // Mengatur ulang gbc untuk komponen form
-        gbc.gridwidth = 1; // Kembali ke 1 kolom
-        gbc.insets = new Insets(10, 0, 5, 0); // Padding untuk label
+        gbc.gridwidth = 1;
+        gbc.insets = new Insets(10, 0, 5, 0);
 
-        // Username Label (opsional, karena gambar pertama memiliki placeholder)
-        // Untuk Java Swing, kita tetap pakai JLabel di atas field
         JLabel usernameLabel = new JLabel("Username");
         usernameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        usernameLabel.setForeground(Color.WHITE); // Warna teks putih
+        usernameLabel.setForeground(Color.WHITE);
         gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.anchor = GridBagConstraints.WEST; // Rata kiri
+        gbc.anchor = GridBagConstraints.WEST;
         contentPanel.add(usernameLabel, gbc);
 
-        // Username Field
-        usernameField = new JTextField(25); // Ukuran field yang lebih sesuai
+        usernameField = new JTextField(25);
         usernameField.setFont(new Font("Arial", Font.PLAIN, 18));
-        usernameField.setBackground(Color.WHITE); // Latar belakang putih
-        usernameField.setForeground(Color.BLACK); // Teks hitam
+        usernameField.setBackground(Color.WHITE);
+        usernameField.setForeground(Color.BLACK);
         usernameField.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(200, 200, 200), 1), // Border abu-abu terang
-            BorderFactory.createEmptyBorder(10, 15, 10, 15) // Padding internal
+            BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+            BorderFactory.createEmptyBorder(10, 15, 10, 15)
         ));
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.insets = new Insets(0, 0, 20, 0); // Jarak di bawah field
-        gbc.anchor = GridBagConstraints.CENTER; // Pusatkan
+        gbc.insets = new Insets(0, 0, 20, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
         contentPanel.add(usernameField, gbc);
 
-        // Password Label
         JLabel passwordLabel = new JLabel("Password");
         passwordLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         passwordLabel.setForeground(Color.WHITE);
         gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.insets = new Insets(10, 0, 5, 0); // Padding untuk label
-        gbc.anchor = GridBagConstraints.WEST; // Rata kiri
+        gbc.insets = new Insets(10, 0, 5, 0);
+        gbc.anchor = GridBagConstraints.WEST;
         contentPanel.add(passwordLabel, gbc);
 
-        // Password Field
-        passwordField = new JPasswordField(25); // Ukuran field yang lebih sesuai
+        passwordField = new JPasswordField(25);
         passwordField.setFont(new Font("Arial", Font.PLAIN, 18));
         passwordField.setBackground(Color.WHITE);
         passwordField.setForeground(Color.BLACK);
@@ -96,50 +82,45 @@ public class LoginFrame extends JFrame {
         ));
         gbc.gridx = 0;
         gbc.gridy = 4;
-        gbc.insets = new Insets(0, 0, 30, 0); // Jarak di bawah field
-        gbc.anchor = GridBagConstraints.CENTER; // Pusatkan
+        gbc.insets = new Insets(0, 0, 30, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
         contentPanel.add(passwordField, gbc);
 
-        // --- Panel Tombol Login/Register (Side-by-Side) ---
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0)); // Tengah, jarak 20px
-        buttonPanel.setBackground(new Color(30, 30, 30)); // Latar belakang sama dengan contentPanel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
+        buttonPanel.setBackground(new Color(30, 30, 30));
 
         JButton loginButton = new JButton("Login");
         loginButton.setFont(new Font("Arial", Font.BOLD, 18));
-        loginButton.setBackground(new Color(255, 165, 0)); // Oranye
+        loginButton.setBackground(new Color(255, 165, 0));
         loginButton.setForeground(Color.WHITE);
-        loginButton.setPreferredSize(new Dimension(150, 45)); // Ukuran tombol
+        loginButton.setPreferredSize(new Dimension(150, 45));
         loginButton.setFocusPainted(false);
         loginButton.setBorderPainted(false);
-        // Untuk efek rounded corner, perlu custom UI atau set BorderFactory.createEmptyBorder
-        // dan menggambar shape di paintComponent. Untuk kesederhanaan, kita biarkan kotak.
         buttonPanel.add(loginButton);
         loginButton.addActionListener(this::performLogin);
 
         JButton registerButton = new JButton("Register");
         registerButton.setFont(new Font("Arial", Font.BOLD, 18));
-        registerButton.setBackground(new Color(76, 175, 80)); // Hijau
+        registerButton.setBackground(new Color(76, 175, 80));
         registerButton.setForeground(Color.WHITE);
-        registerButton.setPreferredSize(new Dimension(150, 45)); // Ukuran tombol
+        registerButton.setPreferredSize(new Dimension(150, 45));
         registerButton.setFocusPainted(false);
         registerButton.setBorderPainted(false);
         buttonPanel.add(registerButton);
         registerButton.addActionListener(e -> {
-            new RegisterFrame().setVisible(true); // Asumsi RegisterFrame ada
+            new RegisterFrame().setVisible(true);
             dispose();
         });
 
         gbc.gridx = 0;
         gbc.gridy = 5;
-        gbc.gridwidth = 2; // Mengambil 2 kolom untuk panel tombol
-        gbc.insets = new Insets(0, 0, 0, 0); // Tanpa jarak ekstra
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 0, 0, 0);
         contentPanel.add(buttonPanel, gbc);
 
-        // Menambahkan contentPanel ke tengah frame
         add(contentPanel, BorderLayout.CENTER);
     }
 
-    // Metode performLogin tetap sama seperti sebelumnya
     private void performLogin(ActionEvent e) {
         String username = usernameField.getText().trim();
         String password = new String(passwordField.getPassword()).trim();
@@ -149,7 +130,7 @@ public class LoginFrame extends JFrame {
             return;
         }
 
-        try (Connection conn = DBConnection.getConnection()) { // Asumsi kelas DBConnection ada
+        try (Connection conn = DBConnection.getConnection()) {
             String sql = "SELECT user_id, username, nickname, is_admin FROM users WHERE username = ? AND password = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
@@ -158,22 +139,21 @@ public class LoginFrame extends JFrame {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                User user = new User(
-                    rs.getInt("user_id"),
-                    rs.getString("username"),
-                    password, // Catatan: Menyimpan password di objek User umumnya tidak direkomendasikan untuk keamanan
-                    rs.getString("nickname")
-                );
-
+                int userId = rs.getInt("user_id");
+                String nickname = rs.getString("nickname");
                 boolean isAdmin = rs.getBoolean("is_admin");
 
                 if (isAdmin) {
-                    new AdminFrame(user).setVisible(true); // Asumsi AdminFrame ada
+                    // Membuat objek Admin jika is_admin adalah true
+                    Admin adminUser = new Admin(userId, username, password, nickname);
+                    new AdminFrame(adminUser).setVisible(true);
                 } else {
-                    new DashboardFrame(user).setVisible(true); // Asumsi DashboardFrame ada
+                    // Membuat objek User biasa jika is_admin adalah false
+                    User regularUser = new User(userId, username, password, nickname);
+                    new DashboardFrame(regularUser).setVisible(true);
                 }
 
-                dispose(); // Menutup frame login setelah berhasil
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Username atau password salah");
             }
@@ -183,9 +163,7 @@ public class LoginFrame extends JFrame {
         }
     }
 
-    // Metode main untuk pengujian (opsional, biasanya di kelas Main terpisah)
     public static void main(String[] args) {
-        // Memastikan pembaruan UI Swing dilakukan di Event Dispatch Thread
         SwingUtilities.invokeLater(() -> {
             new LoginFrame().setVisible(true);
         });
