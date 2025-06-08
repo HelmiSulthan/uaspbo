@@ -1,6 +1,6 @@
 package code;
 
-import code.model.Admin; // Import kelas Admin
+import code.model.Admin;
 import code.model.User;
 import javax.swing.*;
 import java.awt.*;

@@ -24,7 +24,7 @@ public class GameTicTacToe extends JFrame {
 
         BackgroundPanel panel = new BackgroundPanel("/assets/board.jpg");
 
-        statusLabel = new JLabel(player1.getNickname() + "'s Turn (X)", JLabel.CENTER);
+        statusLabel = new JLabel("Giliran " + player1.getNickname() + " (X)", JLabel.CENTER);
         statusLabel.setFont(new Font("Arial", Font.BOLD, 20));
         statusLabel.setOpaque(false);
         statusLabel.setForeground(Color.WHITE);
@@ -45,7 +45,7 @@ public class GameTicTacToe extends JFrame {
         }
         panel.add(gamePanel, BorderLayout.CENTER);
 
-        JButton backButton = new JButton("Back to Dashboard");
+        JButton backButton = new JButton("Kembali ke Dashboard");
         backButton.addActionListener(e -> {
             new DashboardFrame(player1).setVisible(true);
             dispose();
@@ -62,10 +62,10 @@ public class GameTicTacToe extends JFrame {
 
         if (xTurn) {
             button.setText("X");
-            statusLabel.setText(player2.getNickname() + "'s Turn (O)");
+            statusLabel.setText("Giliran " + player2.getNickname() + "(O)");
         } else {
             button.setText("O");
-            statusLabel.setText(player1.getNickname() + "'s Turn (X)");
+            statusLabel.setText("Giliran " + player1.getNickname() + "(X)");
         }
 
         xTurn = !xTurn;
@@ -95,7 +95,7 @@ public class GameTicTacToe extends JFrame {
         }
 
         if (isBoardFull()) {
-            JOptionPane.showMessageDialog(this, "It's a draw!");
+            JOptionPane.showMessageDialog(this, "DRAW!");
             resetGame();
         }
     }
@@ -132,7 +132,7 @@ public class GameTicTacToe extends JFrame {
             }
         }
         xTurn = true;
-        statusLabel.setText(player1.getNickname() + "'s Turn (X)");
+        statusLabel.setText("GILIRAN (X)" + player1.getNickname());
     }
 
     private void saveScore(User winner) {
@@ -143,7 +143,7 @@ public class GameTicTacToe extends JFrame {
             stmt.setInt(1, winner.getUserId());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error saving score: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal menyimpan score: " + e.getMessage());
         }
     }
 
@@ -155,7 +155,7 @@ public class GameTicTacToe extends JFrame {
             try {
                 backgroundImage = new ImageIcon(getClass().getResource(imagePath)).getImage();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Failed to load background image: " + e.getMessage());
+                JOptionPane.showMessageDialog(this, "gagal menggunakan baackground image: " + e.getMessage());
             }
             setLayout(new BorderLayout());
         }

@@ -34,15 +34,12 @@ public class RegisterFrame extends JFrame {
         contentPanel.setBackground(new Color(30, 30, 30)); 
 
         GridBagConstraints gbc = new GridBagConstraints();
-        // --- PENTING: Insets mengatur jarak di sekeliling komponen ---
-        // Top, Left, Bottom, Right padding
+
         gbc.insets = new Insets(10, 100, 10, 100); 
         
-        // --- PENTING: fill mengatur bagaimana komponen mengisi ruang selnya ---
-        // HORIZONTAL: Komponen akan mengisi seluruh lebar sel gridnya.
         gbc.fill = GridBagConstraints.HORIZONTAL; 
         
-        // --- PENTING: anchor mengatur posisi komponen di dalam sel jika fill tidak penuh ---
+    
         gbc.anchor = GridBagConstraints.CENTER; 
 
         // --- Username Field ---
@@ -55,8 +52,7 @@ public class RegisterFrame extends JFrame {
             BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
             BorderFactory.createEmptyBorder(10, 15, 10, 15)
         ));
-        // --- PENTING: setPreferredSize() mengatur ukuran yang diinginkan ---
-        // Dimension(lebar, tinggi) dalam piksel
+
         usernameField.setPreferredSize(new Dimension(300, 45)); 
 
         usernameField.addFocusListener(new FocusAdapter() {
@@ -77,8 +73,7 @@ public class RegisterFrame extends JFrame {
         });
         gbc.gridx = 0;
         gbc.gridy = 0;
-        // --- PENTING: weightx memungkinkan komponen untuk mengambil ruang ekstra secara horizontal ---
-        // 1.0 berarti komponen ini akan mengambil semua ruang horizontal ekstra yang tersedia.
+     
         gbc.weightx = 1.0; 
         contentPanel.add(usernameField, gbc);
 
@@ -115,7 +110,7 @@ public class RegisterFrame extends JFrame {
             }
         });
         gbc.gridy = 1;
-        // PENTING: Insets ini mengatur jarak antara field password dan username
+        // mengatur jarak antara field password dan username
         gbc.insets = new Insets(15, 100, 15, 100); 
         contentPanel.add(passwordField, gbc);
         
@@ -129,7 +124,7 @@ public class RegisterFrame extends JFrame {
             BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
             BorderFactory.createEmptyBorder(10, 15, 10, 15)
         ));
-        // --- PENTING: setPreferredSize() untuk Nickname Field ---
+        //setPreferredSize() untuk Nickname Field ---
         nicknameField.setPreferredSize(new Dimension(300, 45)); 
 
         nicknameField.addFocusListener(new FocusAdapter() {
@@ -149,12 +144,12 @@ public class RegisterFrame extends JFrame {
             }
         });
         gbc.gridy = 2;
-        // PENTING: Insets ini mengatur jarak antara field nickname dan password, serta jarak di bawah field terakhir
+        // mengatur jarak antara field nickname dan password, serta jarak di bawah field terakhir
         gbc.insets = new Insets(15, 100, 30, 100); 
         contentPanel.add(nicknameField, gbc);
 
 
-        // --- Panel Tombol Register/Back (Side-by-Side) ---
+        // --- Panel Tombol Register/Back
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0)); 
         buttonPanel.setBackground(new Color(30, 30, 30)); 
 

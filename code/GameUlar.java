@@ -22,7 +22,7 @@ public class GameUlar extends JFrame {
     private Timer timer;
     private int score = 0;
     private JLabel scoreLabel;
-    private Image backgroundImage; // Variabel untuk menyimpan gambar latar belakang
+    private Image backgroundImage;
     
     public GameUlar(User user) {
         this.user = user;
@@ -31,19 +31,18 @@ public class GameUlar extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        // Memuat gambar latar belakang
         try {
-            backgroundImage = new ImageIcon(getClass().getResource("/assets/snakeboard.png")).getImage(); // Ganti dengan path gambar Anda
+            backgroundImage = new ImageIcon(getClass().getResource("/assets/snakeboard.png")).getImage();
         } catch (Exception e) {
             System.err.println("Error loading background image for Snake Game: " + e.getMessage());
-            backgroundImage = null; // Set null jika gagal
+            backgroundImage = null;
         }
 
         JPanel panel = new JPanel(new BorderLayout());
         
         scoreLabel = new JLabel("Score: 0", JLabel.CENTER);
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        scoreLabel.setForeground(Color.WHITE); // Ubah warna teks agar terlihat di atas background
+        scoreLabel.setForeground(Color.WHITE); 
         panel.add(scoreLabel, BorderLayout.NORTH);
         
         GamePanel gamePanel = new GamePanel();
@@ -130,7 +129,7 @@ public class GameUlar extends JFrame {
             return;
         }
         
-        // Check collision with self
+      
         for (Point segment : snake) {
             if (segment.equals(newHead)) {
                 gameOver();
@@ -140,7 +139,7 @@ public class GameUlar extends JFrame {
         
         snake.add(0, newHead);
         
-        // Check if snake ate food
+       
         if (newHead.equals(food)) {
             score += 10;
             scoreLabel.setText("Score: " + score);
@@ -189,12 +188,10 @@ public class GameUlar extends JFrame {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             
-            // Gambar latar belakang (jika ada)
+           
             if (backgroundImage != null) {
-                // Skala gambar agar sesuai dengan ukuran panel game
                 g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
             } else {
-                // Jika gambar gagal dimuat, tetap gambar latar belakang hitam
                 g.setColor(Color.BLACK);
                 g.fillRect(0, 0, WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE);
             }
@@ -213,8 +210,7 @@ public class GameUlar extends JFrame {
                 g.fillOval(food.x * TILE_SIZE, food.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
             }
             
-            // Draw grid (opsional, mungkin ingin dihapus jika ada background gambar yang kuat)
-            g.setColor(new Color(50, 50, 50, 100)); // Warna abu-abu gelap transparan
+            g.setColor(new Color(50, 50, 50, 100));
             for (int i = 0; i < WIDTH; i++) {
                 for (int j = 0; j < HEIGHT; j++) {
                     g.drawRect(i * TILE_SIZE, j * TILE_SIZE, TILE_SIZE, TILE_SIZE);

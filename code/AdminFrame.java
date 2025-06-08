@@ -1,7 +1,7 @@
 package code;
 
-import code.model.Admin; // Import kelas Admin
-import code.model.User; // Tetap import User karena User adalah superclass
+import code.model.Admin; 
+import code.model.User; 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 

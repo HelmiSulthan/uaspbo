@@ -147,8 +147,8 @@ public class DashboardFrame extends JFrame {
                 snakeGameButton.setHorizontalTextPosition(SwingConstants.CENTER);
                 snakeGameButton.setVerticalTextPosition(SwingConstants.BOTTOM);
             } else {
-                snakeGameButton.setText("Play Snake Game (Image not found)");
-                System.err.println("Snake Game image not found or loaded incorrectly.");
+                snakeGameButton.setText("Play Snake Game (Image tidak ditemukan)");
+                System.err.println("Snake Game image gagal di muat.");
             }
         } catch (Exception ex) {
             snakeGameButton.setText("Play Snake Game (Error loading image)");
@@ -191,7 +191,7 @@ public class DashboardFrame extends JFrame {
 
             userScoresArea.setText(sb.toString());
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error loading user scores: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal memuat skor user: " + e.getMessage());
         }
     }
 

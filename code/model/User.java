@@ -5,8 +5,6 @@ public class User {
     private String username;
     private String password;
     private String nickname;
-    // Atribut is_admin tidak perlu ada di sini karena akan ditangani saat pembuatan objek Admin
-    // atau di database secara langsung.
 
     public User(int userId, String username, String password, String nickname) {
         this.userId = userId;
@@ -18,7 +16,7 @@ public class User {
     // Getter methods
     public int getUserId() { return userId; }
     public String getUsername() { return username; }
-    public String getPassword() { return password; } // Hati-hati dengan ini, password plaintext tidak disarankan
+    public String getPassword() { return password; } 
     public String getNickname() { return nickname; }
 
     // Setter methods
