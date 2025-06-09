@@ -17,7 +17,7 @@ public class GameUlar extends JFrame {
     
     private ArrayList<Point> snake;
     private Point food;
-    private char direction = 'R'; // U, D, L, R
+    private char direction = 'R';
     private boolean isRunning = false;
     private Timer timer;
     private int score = 0;
@@ -195,7 +195,6 @@ public class GameUlar extends JFrame {
                 g.setColor(Color.BLACK);
                 g.fillRect(0, 0, WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE);
             }
-            
             // Draw snake
             for (Point p : snake) {
                 g.setColor(Color.GREEN);
@@ -203,13 +202,11 @@ public class GameUlar extends JFrame {
                 g.setColor(Color.BLACK); // Border snake
                 g.drawRect(p.x * TILE_SIZE, p.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
             }
-            
             // Draw food
             if (food != null) {
                 g.setColor(Color.RED);
                 g.fillOval(food.x * TILE_SIZE, food.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-            }
-            
+            } 
             g.setColor(new Color(50, 50, 50, 100));
             for (int i = 0; i < WIDTH; i++) {
                 for (int j = 0; j < HEIGHT; j++) {
