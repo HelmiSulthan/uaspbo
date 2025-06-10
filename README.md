@@ -1,5 +1,6 @@
 GameCenter
 
+
 GameCenter adalah aplikasi desktop berbasis Java GUI yang memungkinkan pengguna untuk mendaftar, login, bermain game kasual, melacak skor, dan melihat papan peringkat. Aplikasi ini juga dilengkapi dengan panel administrasi untuk mengelola pengguna dan data skor.
 
 Fitur Utama :
