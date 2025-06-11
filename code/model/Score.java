@@ -16,7 +16,7 @@ public class Score {
         this.lastPlayed = lastPlayed;
     }
     
-    // Getter methods
+
     public int getScoreId() { return scoreId; }
     public int getUserId() { return userId; }
     public String getGameName() { return gameName; }

@@ -102,7 +102,7 @@ public class GameUlar extends JFrame {
     private void gameLoop() {
         if (!isRunning) return;
         
-        // Move snake
+
         Point head = snake.get(0);
         Point newHead;
         
@@ -123,7 +123,7 @@ public class GameUlar extends JFrame {
                 return;
         }
         
-        // Check collision with walls
+   
         if (newHead.x < 0 || newHead.x >= WIDTH || newHead.y < 0 || newHead.y >= HEIGHT) {
             gameOver();
             return;
@@ -195,14 +195,14 @@ public class GameUlar extends JFrame {
                 g.setColor(Color.BLACK);
                 g.fillRect(0, 0, WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE);
             }
-            // Draw snake
+
             for (Point p : snake) {
                 g.setColor(Color.GREEN);
                 g.fillRect(p.x * TILE_SIZE, p.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
                 g.setColor(Color.BLACK); // Border snake
                 g.drawRect(p.x * TILE_SIZE, p.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
             }
-            // Draw food
+
             if (food != null) {
                 g.setColor(Color.RED);
                 g.fillOval(food.x * TILE_SIZE, food.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);

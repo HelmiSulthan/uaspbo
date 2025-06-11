@@ -13,13 +13,13 @@ public class User {
         this.nickname = nickname;
     }
 
-    // Getter methods
+
     public int getUserId() { return userId; }
     public String getUsername() { return username; }
     public String getPassword() { return password; } 
     public String getNickname() { return nickname; }
 
-    // Setter methods
+
     public void setPassword(String password) { this.password = password; }
     public void setNickname(String nickname) { this.nickname = nickname; }
 }
